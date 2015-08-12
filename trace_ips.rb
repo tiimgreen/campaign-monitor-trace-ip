@@ -4,6 +4,7 @@ require 'toc'
 require './lib/ip_tracer'
 
 emails = [
+  'lawrence@parall.ax',
   'tom@parall.ax',
   'lawrence@parall.ax'
 ]

@@ -19,6 +19,12 @@ Initialize a new IPTracer object with the `api_key` and `list_id` as parameters.
 Call `#trace_locations` on the new object as pass an array of Emails. The results will be written to the file.
 
 ```ruby
+emails = [
+  'lawrence@parall.ax',
+  'tom@parall.ax',
+  'lawrence@parall.ax'
+]
+
 tracer = IPTracer.new(ENV["API_KEY"], ENV["LIST_ID"], './users', './GeoIP.dat')
 tracer.trace_locations(emails)
 ```
