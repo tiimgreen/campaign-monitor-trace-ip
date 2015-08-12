@@ -9,7 +9,7 @@ Trace the IP addresses of subscribers given their email address.
 
 ```bash
 $ bundle
-$ API_KEY={{ api_key }} LIST_ID={{ list_id }} ruby trace_ips.rb
+$ API_KEY={{api_key}} LIST_ID={{list_id}} ruby trace_ips.rb
 ```
 
 ### Customisation
