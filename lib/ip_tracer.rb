@@ -13,16 +13,16 @@ class IPTracer
   #
   #   tracer = IPTracer.new(ENV["API_KEY"], ENV["LIST_ID"])
   #   tracer.trace_locations([
-  #     'tim.green@parall.ax',
-  #     'tom@parall.ax'
+  #     'example1@company.com',
+  #     'example2@company.com'
   #   ])
   #
   def trace_locations(emails)
-    write_to_csv('w', headers = ['email', 'ip_address', 'country', 'city'])
+    write_to_csv('w', ['email', 'ip_address', 'country', 'city'])
 
     emails.each do |email|
       subscriber = CreateSend::Subscriber.new({ api_key: @api_key }, @list_id, email)
-      next if (actions = subscriber.history[0].Actions).length == 0
+      next if subscriber.history[0].Actions.length == 0
       write_subscriber_data_to_file(subscriber)
     end
 

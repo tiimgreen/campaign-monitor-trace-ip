@@ -26,6 +26,6 @@ emails = [
   'test4@test.com'
 ]
 
-tracer = IPTracer.new(ENV["API_KEY"], ENV["LIST_ID"], './users', './GeoIP.dat')
+tracer = IPTracer.new(ENV["API_KEY"], ENV["LIST_ID"], './users.csv', './GeoIP.dat')
 tracer.trace_locations(emails)
 ```
