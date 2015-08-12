@@ -1,4 +1,6 @@
 class IPTracer
+  attr_accessor :api_key, :list_id, :file, :database
+
   def initialize(api_key, list_id, file = './records.csv', database = './GeoLiteCity.dat')
     @api_key, @list_id, @file, @database = api_key, list_id, file, database
   end
