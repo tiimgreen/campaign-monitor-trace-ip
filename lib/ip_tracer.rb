@@ -26,7 +26,7 @@ class IPTracer
       write_subscriber_data_to_file(subscriber)
     end
 
-    puts "All locations saved to #{@file}".green
+    puts "All locations saved to #{@file}".green.bold
   end
 
   private
