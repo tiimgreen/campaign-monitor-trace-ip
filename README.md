@@ -1,7 +1,6 @@
 # Campaign Monitor Trace IPs
 
-Trace the IP addresses of subscribers given their email address.
-
+Trace the IP addresses of subscribers on Campaign Monitor given their email address.
 
 ## How to use
 
@@ -16,7 +15,7 @@ $ API_KEY={{api_key}} LIST_ID={{list_id}} ruby trace_ips.rb
 
 Initialize a new IPTracer object with the `api_key` and `list_id` as parameters. You can also specify the file to write to (defaults to `'./records.csv'`) and the database used to lookup the IPs (defaults to `'./GeoLiteCity.dat'`) as optional 3rd and 4th parameters respectively.
 
-Call `#trace_locations` on the new object as pass an array of Emails. The results will be written to the file.
+Call `#trace_locations` on the new object as pass an array of Emails. The results will be written to the CSV file with the headers `email,ip_address,country,city`.
 
 ```ruby
 emails = [
