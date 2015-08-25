@@ -32,7 +32,7 @@ class IPTracer
       write_subscriber_data_to_file(sub)
     end
 
-    puts "All locations saved to #{@file}".green.bold
+    puts "\n All locations saved to #{@file}".green.bold
   end
 
   private
@@ -78,7 +78,9 @@ class IPTracer
     #
     def trace_ip_of_subscriber(subscriber)
       ip_addresses = []
-      subscriber.history[0].Actions.each { |action| ip_addresses << action.IPAddress }
+      subscriber.history[0].Actions.each do |action|
+        ip_addresses << action.IPAddress unless action.IPAddress == ''
+      end
       find_mode_ip(ip_addresses)
     end
 
@@ -103,12 +105,17 @@ class IPTracer
     # Organises the subscriber data and writes to file
     #
     # @params [subscriber:CreateSend::Subscriber]
-    # @return [Integer]
     #
     def write_subscriber_data_to_file(subscriber)
       ip_address = trace_ip_of_subscriber(subscriber)
-      location = lookup(ip_address)
-      user_record = [subscriber.email_address, ip_address, location.country_name, location.city_name]
-      write_to_csv('a', user_record)
+
+      if ip_address.nil?
+        print '.'.red.bold
+      else
+        print '.'.green.bold
+        location = lookup(ip_address)
+        user_record = [subscriber.email_address, ip_address, location.country_name, location.city_name]
+        write_to_csv('a', user_record)
+      end
     end
 end
