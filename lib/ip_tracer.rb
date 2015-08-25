@@ -23,7 +23,7 @@ class IPTracer
   #     'example2@company.com'
   #   ])
   #
-  def trace_locations(emails)
+  def trace_locations(emails, options = {})
     write_to_csv('w', ['email', 'ip_address', 'country', 'city'])
 
     emails.each do |email|
@@ -44,7 +44,7 @@ class IPTracer
     #
     # Example
     #
-    #   write_to_csv('w', headers = ['email', 'ip_address', 'country', 'city'])
+    #   write_to_csv('w', ['email', 'ip_address', 'country', 'city'])
     #   write_to_csv('a', user_record)
     #
     def write_to_csv(mode, contents)
@@ -84,9 +84,9 @@ class IPTracer
       find_mode_ip(ip_addresses)
     end
 
-    # Find the most common IP address of all the ones registered to that Subscriber
+    # Find the most common IP address in an array
     #
-    # @params [ip_address:String]
+    # @params [ip_addresses:Array]
     # @return [String]
     #
     # Example
@@ -108,12 +108,12 @@ class IPTracer
     #
     def write_subscriber_data_to_file(subscriber)
       ip_address = trace_ip_of_subscriber(subscriber)
+      location = lookup(ip_address)
 
-      if ip_address.nil?
+      if location.nil?
         print '.'.red.bold
       else
         print '.'.green.bold
-        location = lookup(ip_address)
         user_record = [subscriber.email_address, ip_address, location.country_name, location.city_name]
         write_to_csv('a', user_record)
       end
