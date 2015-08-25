@@ -1,6 +1,6 @@
 # Campaign Monitor Trace IPs
 
-Trace the IP addresses of subscribers on Campaign Monitor given their email address.
+Find the geographic location and IP address of subscribers to a Campaign Monitor list.
 
 ## How to use
 
