@@ -1,6 +1,3 @@
-require 'createsend'
-require 'geoip'
-require 'toc'
 require './lib/ip_tracer'
 
 emails = [

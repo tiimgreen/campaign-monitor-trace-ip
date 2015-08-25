@@ -1,3 +1,7 @@
+require 'createsend'
+require 'geoip'
+require 'toc'
+
 class IPTracer
   attr_accessor :api_key, :list_id, :file, :database
 
@@ -23,9 +27,9 @@ class IPTracer
     write_to_csv('w', ['email', 'ip_address', 'country', 'city'])
 
     emails.each do |email|
-      subscriber = CreateSend::Subscriber.new({ api_key: @api_key }, @list_id, email)
-      next if subscriber.history[0].Actions.length == 0
-      write_subscriber_data_to_file(subscriber)
+      sub = CreateSend::Subscriber.new({ api_key: @api_key }, @list_id, email)
+      next if sub.history.length == 0 || sub.history[0].Actions.length == 0
+      write_subscriber_data_to_file(sub)
     end
 
     puts "All locations saved to #{@file}".green.bold
